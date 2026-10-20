@@ -56,7 +56,6 @@ export default Plugin.define({
     if (process.env.HERDR_ENV !== "1" || !profile || !pane || !socket || !binary) return
     if (!await compatibleServer(binary)) return
 
-    const wrapper = process.env.CIRCLE_OCX_LAUNCHER === "1"
     const database = process.env.OPENCODE_DB
     let sequence = Date.now() * 1000
     // null keeps a deleted selection's release retryable until it is accepted.
@@ -89,9 +88,7 @@ export default Plugin.define({
       const key = selected ? `${selected}:${state}` : "released"
       if (key === lastReport) return
 
-      const launcher = wrapper
-        ? ["circle-ocx", "--profile", profile, "new", "--session", selected]
-        : ["ocx", "oc", "--profile", profile, "--session", selected]
+      const launcher = ["ocx", "oc", "--profile", profile, "--session", selected]
       pending = true
       try {
         const accepted = await report(socket, {

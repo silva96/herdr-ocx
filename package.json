@@ -1,6 +1,6 @@
 {
   "name": "herdr-ocx",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Restore OpenCode conversations in Herdr with their OCX profile, launcher, and database",
   "type": "module",
   "license": "MIT",
