@@ -1,0 +1,35 @@
+{
+  "name": "herdr-ocx",
+  "version": "0.1.0",
+  "description": "Restore OpenCode conversations in Herdr with their OCX profile, launcher, and database",
+  "type": "module",
+  "license": "MIT",
+  "author": "Benjamin Silva",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silva96/herdr-ocx.git"
+  },
+  "homepage": "https://github.com/silva96/herdr-ocx#readme",
+  "bugs": "https://github.com/silva96/herdr-ocx/issues",
+  "keywords": ["opencode", "herdr", "ocx", "opencode-plugin"],
+  "exports": {
+    ".": "./src/index.ts",
+    "./tui": "./src/tui.ts"
+  },
+  "files": ["src"],
+  "scripts": {
+    "typecheck": "tsc --noEmit --module nodenext --moduleResolution nodenext --target es2022 --skipLibCheck --types node src/index.ts src/tui.ts",
+    "prepublishOnly": "npm run typecheck"
+  },
+  "dependencies": {
+    "@opencode/plugin": "2.0.16"
+  },
+  "devDependencies": {
+    "@types/node": "24.12.2",
+    "solid-js": "1.9.9",
+    "typescript": "5.8.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
