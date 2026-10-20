@@ -4,20 +4,27 @@ OCX-aware Herdr restoration for OpenCode V2. Preserves the selected root convers
 
 Requires OpenCode V2, OCX 3, and Herdr 0.9.2 or newer. Runs only inside Herdr when launched with an OCX profile.
 
-## Install from GitHub
+## Install
 
-Add the package to your OpenCode `cli.json` plugin list, preserving your other entries:
+Install the npm package into an OCX profile:
+
+```sh
+ocx oc --profile yourprofile plugin add herdr-ocx
+```
+
+`plugin add` does not disable Herdr's built-in session-selection plugin. In `~/.config/ocx/profiles/<profile>/cli.json`, add `-herdr.opencode.session-selection` to the `plugins` list (or leave it there if already present). For example:
 
 ```json
 {
+  "$schema": "https://opencode.ai/v2/cli.json",
   "plugins": [
     "-herdr.opencode.session-selection",
-    "github:silva96/herdr-ocx"
+    { "package": "herdr-ocx" }
   ]
 }
 ```
 
-For an OCX profile, edit `~/.config/ocx/profiles/<profile>/cli.json`. Remove any old local Herdr reporter entry, such as an absolute path to `herdr-ocx`. Disable other Herdr session/state reporters before enabling this package. Restart OpenCode after changing reporters.
+Preserve your other settings and plugin entries, and don't enable another Herdr session/state reporter alongside this replacement. Restart OpenCode after changing plugins.
 
 Launch normally, for example:
 
@@ -28,11 +35,9 @@ ocx oc --profile work
 
 The reporter preserves `OPENCODE_DB` verbatim. OpenCode resolves relative database overrides against its data directory, not the working directory. Restoration uses `ocx oc` with the active profile.
 
-## npm
+## Publish
 
-After publishing to npm, use `herdr-ocx` in the plugin list in place of the GitHub entry above.
-
-To validate and publish:
+To validate and publish a new version:
 
 ```sh
 npm ci
